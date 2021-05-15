@@ -1,3 +1,16 @@
+import fs from 'fs'
+
+require('dotenv').config()
+
+const getHttpsConfig = (env) => {
+  return env === 'development'
+    ? {
+        key: fs.readFileSync(process.env.SSL_KEY),
+        cert: fs.readFileSync(process.env.SSL_CERT),
+      }
+    : true
+}
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -24,6 +37,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/dotenv',
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
@@ -39,6 +53,12 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
   ],
+
+  server: {
+    https: getHttpsConfig(process.env.NODE_ENV),
+  },
+
+  auth: {},
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
