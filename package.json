@@ -30,6 +30,7 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/emotion": "^0.1.0",
     "core-js": "^3.9.1",
+    "express": "^4.17.1",
     "nuxt": "^2.15.3"
   },
   "devDependencies": {

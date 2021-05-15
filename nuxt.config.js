@@ -1,4 +1,5 @@
 import fs from 'fs'
+import path from 'path'
 
 require('dotenv').config()
 
@@ -52,11 +53,14 @@ export default {
     '@nuxtjs/emotion',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
 
   server: {
     https: getHttpsConfig(process.env.NODE_ENV),
   },
+
+  serverMiddleware: [{ path: '/api', handler: path.resolve('./api/index.js') }],
 
   auth: {},
 
